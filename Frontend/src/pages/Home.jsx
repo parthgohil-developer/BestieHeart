@@ -21,14 +21,24 @@ export default function Home() {
         {/* Decorative Background blob */}
         <div className="absolute top-10 left-1/2 w-[800px] h-[800px] bg-pink-100/40 rounded-full blur-3xl -translate-x-1/2 pointer-events-none -z-10"></div>
 
-        <motion.h1
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          className="text-4xl md:text-5xl font-serif font-bold text-[#ffb6c1] mb-10 tracking-widest text-center mt-6"
-        >
-          Welcome To BestieHeart!!
-        </motion.h1>
+        <div className="flex justify-center flex-wrap gap-x-3 gap-y-2 mb-10 mt-6 px-4">
+          {"Welcome To BestieHeart!!".split(" ").map((word, wIdx) => (
+            <div key={wIdx} className="flex">
+              {word.split("").map((char, cIdx) => {
+                const globalIndex = wIdx * 10 + cIdx;
+                return (
+                  <span
+                    key={cIdx}
+                    className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-[#ffb6c1] inline-block animate-bounce hover:text-pink-400 transition-colors drop-shadow-sm cursor-default"
+                    style={{ animationDelay: `${globalIndex * 0.1}s` }}
+                  >
+                    {char}
+                  </span>
+                );
+              })}
+            </div>
+          ))}
+        </div>
 
         {/* Sections Grid */}
         <div className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pb-20 relative z-10">
