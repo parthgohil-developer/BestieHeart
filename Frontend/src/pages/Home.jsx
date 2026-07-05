@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import pippoImg from '../assets/Pippo 3.jpg';
 import pippo4Img from '../assets/Pippo 2.jpg';
 import parthImg from '../assets/Parth.jpeg';
+import parth2Img from '../assets/parth 2.jpeg';
 
 
 export default function Home() {
@@ -49,6 +50,13 @@ export default function Home() {
             route="/form"
             imageSrc={parthImg}
             imgConfig="object-[center_30%]"
+          />
+
+          <ActionCard
+            title="Book Appointment"
+            route="/meeting"
+            imageSrc={parth2Img}
+            imgConfig="object-top"
           />
 
         </div>

@@ -11,6 +11,7 @@ export default function Login({ title = "LOGIN", subtitle, authFunction = login,
   const [username, setUsername] = useState("");
   const [dob, setDob] = useState(null);
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -83,14 +84,23 @@ export default function Login({ title = "LOGIN", subtitle, authFunction = login,
               />
             </div>
 
-            <input
-              type="password"
-              placeholder="Password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-4 py-3 rounded-xl text-gray-800 bg-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-300 transition-shadow"
-              required
-            />
+            <div className="relative w-full">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full px-4 py-3 rounded-xl text-gray-800 bg-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-pink-300 transition-shadow pr-12"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute inset-y-0 right-0 px-4 flex items-center text-gray-500 hover:text-pink-400 transition-colors focus:outline-none"
+              >
+                {showPassword ? "👁️" : "🙈"}
+              </button>
+            </div>
 
             {error && (
               <p className="text-red-500 text-sm font-semibold">{error}</p>

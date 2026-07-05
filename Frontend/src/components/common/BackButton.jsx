@@ -7,7 +7,7 @@ export default function BackButton() {
   const location = useLocation();
 
   // Define routes where the back button should NOT appear
-  const hiddenRoutes = ['/', '/form', '/home'];
+  const hiddenRoutes = ['/', '/home'];
 
   if (hiddenRoutes.includes(location.pathname)) return null;
 

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { sendProsConsEmail, sendDeepQAEmail, sendPersonalReplyEmail } = require('../services/emailService');
+const { sendProsConsEmail, sendDeepQAEmail, sendPersonalReplyEmail, sendMeetingEmail } = require('../services/emailService');
 
 // POST /api/form/pros-cons
 router.post('/pros-cons', async (req, res) => {
@@ -33,6 +33,17 @@ router.post('/personal-reply', async (req, res) => {
     } catch (error) {
         console.error('Failed to send Personal Reply email:', error);
         res.status(500).json({ success: false, error: 'Failed to process personal reply.' });
+    }
+});
+
+// POST /api/form/meeting
+router.post('/meeting', async (req, res) => {
+    try {
+        await sendMeetingEmail(req.body);
+        res.status(200).json({ success: true, message: 'Meeting Request sent securely via Gmail!' });
+    } catch (error) {
+        console.error('Failed to send Meeting email:', error);
+        res.status(500).json({ success: false, error: 'Failed to process meeting request.' });
     }
 });
 

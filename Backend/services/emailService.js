@@ -109,8 +109,45 @@ const sendPersonalReplyEmail = async (data) => {
     return transporter.sendMail(mailOptions);
 };
 
+const sendMeetingEmail = async (data) => {
+    const transporter = createTransporter();
+    
+    let infoHtml = '';
+    if (data.wantToMeet === 'Yes') {
+        infoHtml = `
+            <p style="background: #e3f2fd; padding: 15px; border-left: 4px solid #3498db; border-radius: 4px;">
+                <strong>They absolutely want to meet! 🎉</strong><br/><br/>
+                🗓️ <strong>Date:</strong> ${data.meetingDate || 'Not specified'}<br/><br/>
+                ⏰ <strong>Time:</strong> ${data.meetingTime || 'Not specified'}<br/><br/>
+                📝 <strong>Purpose:</strong> ${data.purpose || 'Not specified'}
+            </p>
+        `;
+    } else {
+        infoHtml = `
+            <p style="background: #fff3f3; padding: 15px; border-left: 4px solid #e74c3c; border-radius: 4px;">
+                <strong>They politely declined a meeting.</strong> No worries!
+            </p>
+        `;
+    }
+
+    const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: process.env.TARGET_EMAIL || process.env.EMAIL_USER,
+        subject: '🗓️ New Appointment Request',
+        html: `
+            <div style="font-family: sans-serif; padding: 20px; color: #333;">
+                <h2 style="color: #ff6b81;">Meeting Scheduler Alert</h2>
+                <hr style="border: 1px solid #ffb6c1; margin: 20px 0;" />
+                ${infoHtml}
+            </div>
+        `
+    };
+    return transporter.sendMail(mailOptions);
+};
+
 module.exports = {
     sendProsConsEmail,
     sendDeepQAEmail,
-    sendPersonalReplyEmail
+    sendPersonalReplyEmail,
+    sendMeetingEmail
 };

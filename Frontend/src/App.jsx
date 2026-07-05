@@ -6,6 +6,7 @@ import FormOne from './pages/FormOne';
 import FormTwo from './pages/FormTwo';
 import Birthday from './pages/Birthday';
 import Personal from './pages/Personal';
+import Meeting from './pages/Meeting';
 import BackButton from './components/common/BackButton';
 import MainLayout from './layout/MainLayout';
 import { specialFormLogin } from './service/authService';
@@ -39,6 +40,7 @@ function App() {
         <Route path="/form-2" element={<FormTwo />} />
         <Route path="/birthday" element={<Birthday />} />
         <Route path="/personal" element={<Personal />} />
+        <Route path="/meeting" element={<Meeting />} />
       </Route>
     </Routes>
     </>
