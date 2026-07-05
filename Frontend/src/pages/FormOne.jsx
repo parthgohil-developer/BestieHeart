@@ -19,7 +19,8 @@ export default function FormOne() {
     setIsSubmitting(true);
     
     try {
-        await axios.post('http://localhost:5000/api/form/pros-cons', { pros, cons });
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      await axios.post(`${API_URL}/api/form/pros-cons`, { pros, cons });
         setShowPopup(true);
         setTimeout(() => window.location.reload(), 3200);
     } catch (err) {

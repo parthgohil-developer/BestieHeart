@@ -28,7 +28,8 @@ export default function Meeting() {
 
     setIsSubmitting(true);
     try {
-      await axios.post('http://localhost:5000/api/form/meeting', {
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      await axios.post(`${API_URL}/api/form/meeting`, {
         wantToMeet,
         meetingDate: meetingDate ? meetingDate.toLocaleDateString() : 'N/A',
         meetingTime: meetingTime ? meetingTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : 'N/A',

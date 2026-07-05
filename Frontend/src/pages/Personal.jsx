@@ -27,7 +27,8 @@ export default function Personal() {
     setIsSubmitting(true);
 
     try {
-      await axios.post('http://localhost:5000/api/form/personal-reply', { message: personalReply });
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      await axios.post(`${API_URL}/api/form/personal-reply`, { message: personalReply });
       setShowPopup(true);
       setTimeout(() => window.location.reload(), 3200);
     } catch (error) {
