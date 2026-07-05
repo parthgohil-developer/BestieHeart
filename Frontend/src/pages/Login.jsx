@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { login } from "../service/authService";
 import roseImage from "../assets/Rose.png";
 
-export default function Login() {
+export default function Login({ title = "LOGIN", subtitle, authFunction = login, onSuccessRoute = "/home" }) {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [dob, setDob] = useState(null);
   const [password, setPassword] = useState("");
@@ -17,8 +20,8 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const response = await login(username, dob, password);
-      alert(response.message + " - DOB verified: " + response.user.dob);
+      const response = await authFunction(username, dob, password);
+      navigate(onSuccessRoute);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -35,14 +38,24 @@ export default function Login() {
       ></div>
 
       {/* Right Side - Form */}
-      <div className="w-full md:w-1/2 flex flex-col justify-center items-center p-8">
-        <div className="w-full max-w-md flex flex-col items-center">
-          <h1 className="text-4xl font-serif font-bold tracking-widest mb-2 shadow-sm text-white">
-            LOGIN
+      <div className="w-full md:w-1/2 flex flex-col justify-center items-center p-8 overflow-y-auto">
+        <motion.div 
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, type: "spring", stiffness: 100 }}
+          className="w-full max-w-md flex flex-col items-center bg-white/10 p-10 rounded-[2.5rem] backdrop-blur-md shadow-2xl border border-white/20"
+        >
+          <h1 className="text-4xl font-serif font-bold tracking-widest mb-2 shadow-sm text-white uppercase text-center">
+            {title}
           </h1>
+          {subtitle && (
+            <p className="animate-alert-flash text-sm font-sans tracking-wide text-center max-w-xs leading-relaxed mb-4 font-bold">
+              {subtitle}
+            </p>
+          )}
 
           {/* Divider Line */}
-          <div className="w-full h-px bg-white/30 mb-10"></div>
+          <div className="w-full h-px bg-white/30 mb-8"></div>
 
           <form onSubmit={handleLogin} className="w-full flex flex-col gap-5">
             <input
@@ -102,7 +115,7 @@ export default function Login() {
               </button>
             </div>
           </form>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

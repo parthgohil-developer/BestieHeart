@@ -1,0 +1,8 @@
+@keyframes color-alert-flash {
+  0%, 100% { color: #ffffff; text-shadow: 0 0 4px rgba(255,255,255,0.4); }
+  50% { color: #ef4444; text-shadow: 0 0 4px rgba(239,68,68,0.4); }
+}
+
+.animate-alert-flash {
+  animation: color-alert-flash 1s ease-in-out infinite;
+}
