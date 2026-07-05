@@ -95,6 +95,7 @@ export default function FormTwo() {
   const [answers, setAnswers] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [showErrorPopup, setShowErrorPopup] = useState(false);
 
   const handleInputChange = (questionIndex, value) => {
     setAnswers(prev => ({
@@ -115,6 +116,21 @@ export default function FormTwo() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Validate EVERY question is answered
+    for (let secIdx = 0; secIdx < qnaSections.length; secIdx++) {
+      for (let qIdx = 0; qIdx < qnaSections[secIdx].questions.length; qIdx++) {
+         const key = `${secIdx}-${qIdx}`;
+         if (!answers[key] || !answers[key].trim()) {
+             // Jump back to the section with the missing answer so they instantly see it
+             setActiveTab(secIdx);
+             setShowErrorPopup(true);
+             setTimeout(() => setShowErrorPopup(false), 4000);
+             return;
+         }
+      }
+    }
+
     setIsSubmitting(true);
     try {
       await axios.post('http://localhost:5000/api/form/deep-qa', { answers });
@@ -262,6 +278,36 @@ export default function FormTwo() {
                      className="h-full bg-gradient-to-r from-green-400 to-emerald-500"
                    />
                 </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <AnimatePresence>
+          {showErrorPopup && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center bg-white/70 backdrop-blur-sm"
+            >
+              <motion.div 
+                initial={{ scale: 0.7, y: 30, opacity: 0 }}
+                animate={{ scale: 1, y: 0, opacity: 1 }}
+                transition={{ type: "spring", bounce: 0.4 }}
+                className="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-2xl flex flex-col items-center border border-red-100 max-w-sm mx-4 text-center relative overflow-hidden"
+              >
+                <div className="w-20 h-20 bg-red-50 text-red-500 rounded-full flex items-center justify-center text-4xl mb-5 shadow-inner">
+                  ⚠️
+                </div>
+                <h2 className="text-3xl font-serif font-bold text-gray-800 mb-3">Incomplete</h2>
+                <p className="text-gray-500 text-lg mb-8">You missed a question! Please answer all questions before submitting. I brought you back to the empty one! 😉</p>
+                <button 
+                  onClick={() => setShowErrorPopup(false)}
+                  className="px-8 py-3 rounded-full text-white bg-red-400 hover:bg-red-500 transition-all font-bold"
+                >
+                  Okay
+                </button>
               </motion.div>
             </motion.div>
           )}

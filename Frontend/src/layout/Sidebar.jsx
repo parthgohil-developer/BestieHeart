@@ -32,7 +32,6 @@ export default function Sidebar({ isOpen, closeSidebar }) {
           {/* Menu Items */}
           <nav className="flex flex-col gap-6 font-serif text-xl text-gray-600">
             <a href="/home" className="hover:text-[#ffb6c1] transition-colors">Home</a>
-            <a href="#profile" className="hover:text-[#ffb6c1] transition-colors">Profile</a>
             <div className="flex-grow"></div>
             <a href="/" className="hover:text-red-400 transition-colors mt-auto text-red-300 border-t pt-4">Logout</a>
           </nav>

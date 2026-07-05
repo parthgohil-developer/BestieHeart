@@ -7,10 +7,15 @@ export default function FormOne() {
   const [cons, setCons] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
+  const [showErrorPopup, setShowErrorPopup] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!pros || !cons) return;
+    if (!pros.trim() || !cons.trim()) {
+      setShowErrorPopup(true);
+      setTimeout(() => setShowErrorPopup(false), 3500);
+      return;
+    }
     setIsSubmitting(true);
     
     try {
@@ -135,6 +140,36 @@ export default function FormOne() {
                      className="h-full bg-gradient-to-r from-pink-300 to-rose-400"
                    />
                 </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        <AnimatePresence>
+          {showErrorPopup && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center bg-white/70 backdrop-blur-sm"
+            >
+              <motion.div 
+                initial={{ scale: 0.7, y: 30, opacity: 0 }}
+                animate={{ scale: 1, y: 0, opacity: 1 }}
+                transition={{ type: "spring", bounce: 0.4 }}
+                className="bg-white p-8 md:p-10 rounded-[2.5rem] shadow-2xl flex flex-col items-center border border-red-100 max-w-sm mx-4 text-center relative overflow-hidden"
+              >
+                <div className="w-20 h-20 bg-red-50 text-red-500 rounded-full flex items-center justify-center text-4xl mb-5 shadow-inner">
+                  ⚠️
+                </div>
+                <h2 className="text-3xl font-serif font-bold text-gray-800 mb-3">Wait!</h2>
+                <p className="text-gray-500 text-lg mb-8">Please be honest and fill out both the Pros and Cons fields first! 🥺</p>
+                <button 
+                  onClick={() => setShowErrorPopup(false)}
+                  className="px-8 py-3 rounded-full text-white bg-red-400 hover:bg-red-500 transition-all font-bold"
+                >
+                  Okay
+                </button>
               </motion.div>
             </motion.div>
           )}

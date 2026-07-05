@@ -84,11 +84,10 @@ export default function Personal() {
                 transition={{ duration: 0.8 }}
                 className="w-full bg-white/90 backdrop-blur-xl p-8 md:p-12 rounded-[3rem] shadow-2xl border border-pink-100 flex flex-col"
             >
-                <div className="flex items-center gap-4 mb-3">
+                <div className="flex items-center gap-4 mb-8">
                   <span className="text-4xl">💌</span>
                   <h2 className="text-2xl md:text-3xl font-serif font-bold text-rose-400">Leave a message for Cartoon?</h2>
                 </div>
-                <p className="text-gray-400 mb-8 font-sans italic ml-14">(This is completely optional! Feel free to vent or reply.)</p>
                 
                 <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                     <textarea 
