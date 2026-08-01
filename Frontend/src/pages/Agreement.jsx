@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Confetti from 'react-confetti';
 import { useWindowSize } from 'react-use';
-import BackButton from '../components/common/BackButton';
 
 export default function Agreement() {
     const navigate = useNavigate();
@@ -50,9 +49,7 @@ export default function Agreement() {
     };
 
     return (
-        <div className="min-h-screen bg-[#a88bee] flex items-center justify-center relative font-sans overflow-hidden select-none p-6">
-            
-            <BackButton />
+        <div className="min-h-[100dvh] bg-[#29262b] flex flex-col items-center justify-start p-4 md:p-8 font-sans pb-24 overflow-x-hidden relative">
 
             {/* Confetti Explosion */}
             {isAgreed && (

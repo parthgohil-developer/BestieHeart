@@ -1,13 +1,17 @@
 import React from 'react';
 import { FiMenu } from 'react-icons/fi';
 import navImg from '../../assets/Pippo 1.jpg';
+import BackButton from '../common/BackButton';
 
 export default function Navbar({ toggleSidebar }) {
   return (
     <nav className="fixed top-0 left-0 w-full h-16 bg-[#ffb6c1] shadow-md flex items-center justify-between px-6 z-40">
-      {/* Left side: Profile Image */}
-      <div className="w-10 h-10 rounded-full flex items-center justify-center overflow-hidden border-2 border-white shadow-sm hover:scale-110 transition-transform">
-        <img src={navImg} alt="Profile" className="w-full h-full object-cover" />
+      {/* Left side: Profile Image & Back Button */}
+      <div className="flex items-center gap-3">
+        <div className="w-10 h-10 rounded-full flex shrink-0 items-center justify-center overflow-hidden border-[2.5px] border-white shadow-sm hover:scale-110 transition-transform">
+          <img src={navImg} alt="Profile" className="w-full h-full object-cover" />
+        </div>
+        <BackButton />
       </div>
 
       {/* Right side: Hamburger Menu */}

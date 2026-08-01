@@ -60,10 +60,10 @@ export default function WordSearch() {
                             {/* FRIENDSHIP (Diagonal) */}
                             <motion.div 
                                 initial={{ width: "0%" }}
-                                animate={{ width: "135%" }}
+                                animate={{ width: "137.3%" }}
                                 transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
                                 className="absolute bg-[#ef4444] h-[10%] rounded-full shadow-[2px_2px_0px_rgba(0,0,0,0.15)]"
-                                style={{ top: "5%", left: "5%", transformOrigin: "left center", transform: "translateY(-50%) rotate(45deg)" }}
+                                style={{ top: "1.5%", left: "1.5%", transformOrigin: "left center", transform: "translateY(-50%) rotate(45deg)" }}
                             />
 
                             {/* HAPPY */}

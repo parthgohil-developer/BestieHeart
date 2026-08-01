@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import BackButton from '../components/common/BackButton';
 
 export default function MessageForm() {
     const navigate = useNavigate();
@@ -38,8 +37,6 @@ export default function MessageForm() {
 
     return (
         <div className="min-h-screen bg-[#a88bee] flex flex-col items-center justify-center p-6 relative select-none font-sans overflow-hidden">
-            
-            <BackButton />
 
             <motion.div 
                 initial={{ opacity: 0, y: 40 }}

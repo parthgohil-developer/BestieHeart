@@ -18,7 +18,7 @@ import FinalPage from './pages/FinalPage';
 import WordSearch from './pages/WordSearch';
 import Agreement from './pages/Agreement';
 import MessageForm from './pages/MessageForm';
-import BackButton from './components/common/BackButton';
+
 import MainLayout from './layout/MainLayout';
 import { specialFormLogin } from './service/authService';
 import './App.css';
@@ -26,7 +26,6 @@ import './App.css';
 function App() {
   return (
     <>
-      <BackButton />
       <Routes>
         {/* Main Login */}
         <Route path="/" element={<Login />} />
