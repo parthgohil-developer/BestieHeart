@@ -16,7 +16,7 @@ export const login = async (username, dob, password) => {
       console.log(`Login attempt: Username=${username}, Password=${password}, DOB=${dobString}`);
 
       // Strict validation for exact credentials
-      if (username === 'Admin' && password === 'Admin123' && dobString === '09-02-2004') {
+      if (username === 'Mittal' && password === 'Mittal@123' && dobString === '09-02-2004') {
         resolve({
           user: {
             username,
@@ -45,7 +45,7 @@ export const specialFormLogin = async (username, dob, password) => {
       const dobString = `${day}-${month}-${year}`;
 
       // Different strict credentials for Form Login
-      if (username === 'Parth2407' && password === 'Parth@123' && dobString === '24-07-2004') {
+      if (username === 'Parth' && password === 'Parth@123' && dobString === '24-07-2004') {
         resolve({
           user: {
             username,

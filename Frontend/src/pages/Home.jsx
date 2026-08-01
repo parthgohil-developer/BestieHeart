@@ -5,6 +5,7 @@ import pippoImg from '../assets/Pippo 3.jpg';
 import pippo4Img from '../assets/pippo 2.jpg';
 import parthImg from '../assets/Parth.jpeg';
 import parth2Img from '../assets/parth 2.jpeg';
+import friendshipImg from '../assets/Friendship.jpg';
 
 
 export default function Home() {
@@ -67,6 +68,12 @@ export default function Home() {
             route="/meeting"
             imageSrc={parth2Img}
             imgConfig="object-top"
+          />
+
+          <ActionCard
+            title="Friendship day special"
+            route="/friendship"
+            imageSrc={friendshipImg}
           />
 
         </div>

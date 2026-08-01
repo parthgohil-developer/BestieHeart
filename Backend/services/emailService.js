@@ -97,7 +97,7 @@ const sendPersonalReplyEmail = async (data) => {
         subject: '💌 New Interactive Personal Message',
         html: `
             <div style="font-family: serif; padding: 40px 20px; background-color: #fff0f5; text-align: center; border-radius: 12px;">
-                <h2 style="color: #e84393; font-size: 24px;">Message for "Cartoon"</h2>
+                <h2 style="color: #e84393; font-size: 24px;">${data.customTitle || 'Message for "Cartoon"'}</h2>
                 <div style="max-width: 600px; margin: 30px auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
                     <p style="font-size: 18px; line-height: 1.6; color: #2d3436; text-align: left;">
                         ${data.message || data.personalReply || data.text || 'Empty message.'}
